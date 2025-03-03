@@ -13,4 +13,4 @@ This project involves designing and implementing a small network for a company u
   3. Customer Service/Reception
 
 *	**VLAN Implementation:**
-  Each department is assigned a separate VLAN.
+  - Each department is assigned a separate VLAN.
