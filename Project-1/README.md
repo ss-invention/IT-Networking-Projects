@@ -4,11 +4,13 @@
 ## Project Overview:
 This project involves designing and implementing a small network for a company using CISCO products. The network is structured to meet the following requirements:
 
-* **One Router and One Switch:** <br/>    All  network devices used are from CISCO.
+1.  **One Router and One Switch:** 
+       <br/>All  network devices used are from CISCO.
 
-* **Three Departments:**
-  1. Admin/IT
-  2. Finance/HR
-  3. Customer Service/Reception
+3.  **Three Departments:**
+       1. Admin/IT
+       2. Finance/HR
+       3. Customer Service/Reception
 
-*	**VLAN Implementation:** <br/>    Each department is assigned a separate VLAN.
+4. 	**VLAN Implementation:** 
+        <br/>Each department is assigned a separate VLAN.
