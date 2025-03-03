@@ -10,3 +10,5 @@ This project involves designing and implementing a small network for a company u
   1. Admin/IT
   2. Finance/HR
   3. Customer Service/Reception
+
+*	**VLAN Implementation:** 	Each department is assigned a separate VLAN.
