@@ -9,7 +9,7 @@ This project involves designing and implementing a small network for a company u
 
     2. Three Departments:
         A. Admin/IT
-	B. Finance/HR
+	   B. Finance/HR
         C. Customer Service/Reception
 
     3. VLAN Implementation:
