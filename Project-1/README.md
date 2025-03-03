@@ -13,3 +13,12 @@ This project involves designing and implementing a small network for a company u
 
 3.   **VLAN Implementation:** 
      <br/> Each department is assigned a separate VLAN.
+
+4.   **Wireless Network:**
+     <br/> Each department has a wireless network for users.
+
+5.   **Dynamic IP Allocation:**
+     <br/> All host devices obtain IPv4 addresses automatically.
+
+6.   **Inter-VLAN Communication:**
+     <br/> Devices in all departments can communicate with each other.
