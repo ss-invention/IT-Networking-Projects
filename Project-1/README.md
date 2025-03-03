@@ -1,4 +1,4 @@
-# SOHO (Small office Home Office) Network Design and Configuration on Cisco Packet Tracer.
+## Project Title: # SOHO (Small office Home Office) Network Design and Configuration on Cisco Packet Tracer.
 
 
 ## Project Overview:
