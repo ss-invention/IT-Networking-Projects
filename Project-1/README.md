@@ -7,9 +7,9 @@ a.  **One Router and One Switch:**
     <br/> All  network devices used are from CISCO.
 
 b.  **Three Departments:**
-       _ Admin/IT
-       _ Finance/HR
-       _ Customer Service/Reception
+       - Admin/IT
+       - Finance/HR
+       - Customer Service/Reception
 
 c.   **VLAN Implementation:** 
      <br/> Each department is assigned a separate VLAN.
