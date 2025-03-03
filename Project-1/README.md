@@ -8,9 +8,9 @@ This project involves designing and implementing a small network for a company u
         All network devices used are from CISCO.
 
     2. Three Departments:
-        A. Admin/IT
-	     B. Finance/HR
-        C. Customer Service/Reception
+        Admin/IT
+	    Finance/HR
+        Customer Service/Reception
 
     3. VLAN Implementation:
         Each department is assigned a separate VLAN.
