@@ -21,7 +21,6 @@ This Project involves Designing and Implementing a Small Network for a Company u
 - [Installation](#installation)
 - [Usage](#usage)
 - [Network Design](#network-design)
-- [Network Connectivity](#network-connectivity)
 - [Network Configuration](#network-configuration)
 - [Author](#author)
 - [License](#license)
@@ -65,32 +64,4 @@ This network is designed for:
 
 <img src="SOHO Network Design.PNG" alt="SOHO Network Topology Design">
 
-## Network Connectivity
 
-### Step - 1 : Subnetting for different VLAN's
-
-Base Network Provided by ISP : **192.168.1.0/24** (Network Address).
-
-    - Base Network : 192.168.1.0
-    - Default Subnet Mask : 255.255.255.0 (in binary 11111111. 11111111. 11111111.00000000)
-    - No. of Subnet Required = 3
-    - No. of Subnet = 2^n
-    - No. of Subnet = 2^2 = 4 Subnet (Where, n=2) 
-    - New Subnet Mask : 11111111. 11111111. 11111111.11000000 (in decimal 255.255.255.192)
-    - Block Size: 64
-
-
-- **1st Subnet for VLAN 10 (depertment - Admin/IT)**
-    - Network-Id : 192.168.1.0/26
-    - Broadcast-Id : 192.168.1.63
-    - Host-Range : 192.168.1.1 - 192.168.1.62
-
-- **2nd Subnet for VLAN 20 (depertment - Finance/HR)**
-    - Network-Id : 192.168.1.64/26
-    - Broadcast-Id : 192.168.1.127
-    - Host-Range : 192.168.1.65 - 192.168.1.126
-    
-- **3rd Subnet for VLAN 30 (depertment - Reception/CS)**
-    - Network-Id : 192.168.1.128/26
-    - Broadcast-Id : 192.168.1.191
-    - Host-Range : 192.168.1.129 - 192.168.1.190
