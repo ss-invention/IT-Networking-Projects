@@ -61,7 +61,7 @@ This network is designed for:
     - VLAN 10 (for Admin/IT)
     - VLAN 20 (for Finance/HR)
     - VLAN 30 (for Reception/CS)
--	Connect the End-devices with the Switch, which are under the different VLAN's.
+-	Connect the End-devices with the Switch, which are located in the different VLAN's.
 
 <img src="SOHO Network Design.PNG" alt="SOHO Network Topology Design">
 
