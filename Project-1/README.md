@@ -36,3 +36,20 @@ Click [here](https://archive.org/download/cpt822/CiscoPacketTracer822_amd64_sign
 
 Click [here](https://archive.org/download/cpt822/CiscoPacketTracer822_setup_mac_signed.dmg) to download the **Cisco Packet Tracer** software tool (for Mac OS).
 
+## Usage
+This network is designed for:
+-	Efficient department segmentation using VLANs
+-	Seamless inter-department communication
+-	Secure wireless connectivity for users
+-	Automatic IP allocation through DHCP
+
+## Network Design
+### Process - 1 : Topology Design
+
+- #### Step - 1 : Reruirements
+
+    -	Cisco Router (1 unit)
+	-   Cisco Switch (1 unit)
+    -   Access Points (APs) for wireless networks
+    -   Computers and mobile devices
+    -   Ethernet cables
