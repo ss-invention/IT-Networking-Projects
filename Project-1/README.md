@@ -1,24 +1,31 @@
-## Project Title : SOHO (Small office Home Office) Network Design and Configuration on Cisco Packet Tracer.
+## Project Tittle and Description : SOHO (Small Office Home Office) Network Design and Configuration on Cisco Paket Tracer.
 
-## Project Overview
-This project involves designing and implementing a small network for a company using CISCO products. The network is structured to meet the following requirements:
+This Project involves Designing and Implementing a Small Network for a Company using CISCO products. The network is structured to meet the following requirements:
 
-1.  **One Router and One Switch :** 
-    <br/> All  network devices used are from CISCO.
+    1. One router and one switch to be used (all CISCO products).
 
-2.  **Three Departments :**
-       - Admin/IT
-       - Finance/HR
-       - Customer Service/Reception
+    2. 3 departments (Admin/IT, Finance/HR and Reception/CS). 
 
-3.   **VLAN Implementation :** 
-     <br/> Each department is assigned a separate VLAN.
+    3. Each department is required to be in different VLANS. 
 
-4.   **Wireless Network :**
-     <br/> Each department has a wireless network for users.
+    4. Each department is required to have wireless network for the users. 
 
-5.   **Dynamic IP Allocation :**
-     <br/> All host devices obtain IPv4 addresses automatically.
+    5. Host devices in the network are required to obtain IPv4 address automatically. 
 
-6.   **Inter-VLAN Communication :**
-     <br/> Devices in all departments can communicate with each other.
+    6. Devices in all the departments are required to communicate with each other. 
+
+**Note:** Assume the ISP gave out a base network of **192.168.1.0**, you as the young network engineer who has been hired, design and implement a network considering the above requirements.
+
+
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Network Design](#network-design)
+- [Implementation](#implementation)
+- [Author](#author)
+- [License](#license)
+- [Conclusion](#conclusion)
+- [Contributing](#contributing)
+
+## Installation
+To run this file ([ SOHO Network Design Project.pkt ](#https://github.com/ss-invention/IT-Networking-Projects/blob/cda73995b740b68de08fdf69fd1c4ffec3bfe130/Project-1/SOHO%20Network%20Design%20Project.pkt)), We need a Network Simulation Software Tool - **Cisco Packet Tracer**.
