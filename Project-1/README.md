@@ -64,4 +64,89 @@ This network is designed for:
 
 <img src="SOHO Network Design.PNG" alt="SOHO Network Topology Design">
 
+## Network Configuration 
 
+Before Configuring anything - First, We need to Enable the Cisco Switch or Router and Open the Configure Mode. 
+
+We can Enable the Cisco Switch or Router by applying these steps :
+
+1. Click on the Switch/Router.
+2. Choose the CLI - Command Line Interface option.
+3. CLI Will Show - Would you like to enter the initial configuration dialog? [yes/no] : Type "No", then **Enter**.
+
+       Switch>               (User EXEC Mode)
+
+4. To Enable the Switch/Router, We use enable command. 
+
+       Switch> enable
+       Switch#               (Privileged EXEC Mode)
+
+5. To Open the Configure Mode, We use config terminal command.
+
+       Switch# config terminal
+       Switch(config)#       (Global Configuration Mode)
+
+### Step - 1 : Create VLANs on the Switch  
+
+- For VLAN 10
+
+      Switch(config)# vlan 10
+      Switch(config-vlan)# name Admin/IT
+
+- For VLAN 20
+
+      Switch(config)# vlan 20
+      Switch(config-vlan)# name Finance/HR 
+
+- For VLAN 30  
+
+      Switch(config)# vlan 30
+      Switch(config-vlan)# name Reception/CS
+
+### Step - 2 : Assign ports to VLANs
+
+- For VLAN 10
+
+      Switch(config)# vlan 10
+      Switch(config-vlan)# interface range f0/1-3
+      Switch(config-if-range)# switchport mode access
+      Switch(config-if-range)# switchport access vlan 10
+
+- For VLAN 20
+
+      Switch(config)# vlan 20
+      Switch(config-vlan)# interface range f0/4-6
+      Switch(config-if-range)# switchport mode access
+      Switch(config-if-range)# switchport access vlan 20
+
+- For VLAN 30
+
+      Switch(config)# vlan 30
+      Switch(config-vlan)# interface range f0/7-9
+      Switch(config-if-range)# switchport mode access
+      Switch(config-if-range)# switchport access vlan 30
+
+### Step - 3 : Configure router for Inter-VLAN routing
+
+Configuring Inter-VLAN routing on the Router, We must be follow these things :
+
+1. Each VLAN must be lie in different Subnets of a Network.
+
+   - #### Subnetting for different VLAN's
+
+     Base Network Provided by ISP : **192.168.1.0/24** (Network Address).
+
+         - Base Network : 192.168.1.0/24
+         - Default Subnet Mask : 255.255.255.0 (in binary 11111111. 11111111. 11111111.00000000)
+         - No. of Subnet Required = 3
+         - No. of Subnet = 2^n
+         - No. of Subnet = 2^2 = 4 Subnet (Where, n=2) 
+         - New Subnet Mask : 11111111. 11111111. 11111111.11000000 (in decimal 255.255.255.192)
+         - New Network : 192.168.1.0/26
+         - Block Size: 64
+
+      |No. of Subnet |For|Network ID |Broadcast ID|Host Range|
+      |:---| :----: | :----: | :----: |---:|
+      |1st |VLAN 10 |192.168.1.0|192.168.1.63|192.168.1.1 - 192.168.1.62|
+      |2nd |VLAN 20 |192.168.1.64|192.168.1.127|192.168.1.65 - 192.168.1.126|
+      |2nd |VLAN 30 |192.168.1.128|192.168.1.191|192.168.1.129 - 192.168.1.190|
