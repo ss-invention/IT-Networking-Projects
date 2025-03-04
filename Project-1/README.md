@@ -54,4 +54,4 @@ This network is designed for:
     -   Computers and mobile devices
     -   Ethernet cables
 
-<img src="Project-1/SOHO Network Design.PNG" alt="">
+<img src="SOHO Network Design.PNG" alt="SOHO Network Topology Design">
