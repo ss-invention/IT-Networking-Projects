@@ -28,4 +28,4 @@ This Project involves Designing and Implementing a Small Network for a Company u
 - [Contributing](#contributing)
 
 ## Installation
-To run this file ([ SOHO Network Design Project.pkt ](SOHO%20Network%20Design%20Project.pkt)), We need a Network Simulation Software Tool - **Cisco Packet Tracer**.
+To run this file ([ SOHO Network Design Project.pkt ](SOHO%20Network%20Design%20Project.pkt)), We need a Network Simulation Software Tool - [Cisco Packet Tracer] (https://archive.org/download/cpt822/CiscoPacketTracer822_64bit_setup_signed.exe).
