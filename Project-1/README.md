@@ -28,4 +28,4 @@ This Project involves Designing and Implementing a Small Network for a Company u
 - [Contributing](#contributing)
 
 ## Installation
-To run this file ([ SOHO Network Design Project.pkt ](#https://github.com/ss-invention/IT-Networking-Projects/blob/cda73995b740b68de08fdf69fd1c4ffec3bfe130/Project-1/SOHO%20Network%20Design%20Project.pkt)), We need a Network Simulation Software Tool - **Cisco Packet Tracer**.
+To run this file ([ SOHO Network Design Project.pkt ](# https://github.com/ss-invention/IT-Networking-Projects/../SOHO Network Design Project.pkt)), We need a Network Simulation Software Tool - **Cisco Packet Tracer**.
