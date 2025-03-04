@@ -53,3 +53,5 @@ This network is designed for:
     -   Access Points (APs) for wireless networks
     -   Computers and mobile devices
     -   Ethernet cables
+
+<img src="Project-1/SOHO Network Design.PNG" alt="">
