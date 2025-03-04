@@ -130,7 +130,7 @@ We can Enable the Cisco Switch or Router by applying these steps :
 
 Configuring Inter-VLAN routing on the Router, We must be follow these things :
 
-1. Each VLAN must be lie in different Subnets of a Network.
+- Each VLAN must be lie in different Subnets of a Network.
 
    - #### Subnetting for different VLAN's
 
@@ -150,3 +150,43 @@ Configuring Inter-VLAN routing on the Router, We must be follow these things :
       |1st |VLAN 10 |192.168.1.0|192.168.1.63|192.168.1.1 - 192.168.1.62|
       |2nd |VLAN 20 |192.168.1.64|192.168.1.127|192.168.1.65 - 192.168.1.126|
       |2nd |VLAN 30 |192.168.1.128|192.168.1.191|192.168.1.129 - 192.168.1.190|
+
+
+- One Port of the Switch should be made a Trunk Port - which port is connected to the Router. Except those port that are connected to the different VLAN's.
+
+      Switch(config)# interface gigabitEthernet0/1
+      Switch(config-if)# switchport mode trunk
+
+- We have to create the Sub-Interfaces for each VLAN's and Assign the different IP-Addresses for each Sub-Interfaces.
+
+   - Before, Create Sub-Interface, We need to Enable the Router and Open Confige Mode. 
+    
+         Router> enable
+         Router# configure terminal
+         Router(config)#
+
+   - After, That Interface of the Router should be up which is connected to the Switch by using "no shutdown" command.  
+
+         Router(config)# interface gigabitEthernet0/0
+         Router(config-if)# no shutdown
+
+   Now we can create Sub-Iinterfaces -
+   - Sub-Interface for VLAN 10
+      
+         Router(config)# int gigabitEthernet0/0.10
+         Router(config-subif)# encapsulation dot1q 10
+         Router(config-subif)# ip address 192.168.1.1 255.255.255.192
+
+   - Sub-Interface for VLAN 20
+      
+         Router(config)# int gigabitEthernet0/0.20
+         Router(config-subif)# encapsulation dot1q 20
+         Router(config-subif)# ip address 192.168.1.65 255.255.255.192
+
+   - Sub-Interface for VLAN 30
+      
+         Router(config)# int gigabitEthernet0/0.30
+         Router(config-subif)# encapsulation dot1q 30
+         Router(config-subif)# ip address 192.168.1.129 255.255.255.192
+
+- Each End-Devices in the different VLAN's must be use the same IP-Address as a Gateway-IP, which is already assigned to the respective Sub-Interfaces. So that Every VLAN's can communicate with each other by using Inter-VLAN Routing concept.
