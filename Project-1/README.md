@@ -189,4 +189,16 @@ Configuring Inter-VLAN routing on the Router, We must be follow these things :
          Router(config-subif)# encapsulation dot1q 30
          Router(config-subif)# ip address 192.168.1.129 255.255.255.192
 
-- Each End-Devices in the different VLAN's must be use the same IP-Address as a Gateway-IP, which is already assigned to the respective Sub-Interfaces. So that Every VLAN's can communicate with each other by using Inter-VLAN Routing concept.
+- Every End-Devices in the different VLAN's must be use the same IP-Address as a Default Gateway-IP, which is already assigned to the respective Sub-Interfaces. So that Each VLAN's can communicate with each other by using Inter-VLAN Routing concept.
+
+    - For VLAN 10
+
+       Every End-Devices in the VLAN 10 must be use **192.168.1.1** as a Default Gateway-IP.
+
+    - For VLAN 20
+
+       Every End-Devices in the VLAN 20 must be use **192.168.1.65** as a Default Gateway-IP.
+
+    - For VLAN 30
+
+       Every End-Devices in the VLAN 30 must be use **192.168.1.129** as a Default Gateway-IP.
