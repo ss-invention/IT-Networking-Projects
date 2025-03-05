@@ -22,7 +22,7 @@ This Project involves Designing and Implementing a Small Network for a Company u
 - [Usage](#usage)
 - [Network Design](#network-design)
 - [Network Configuration](#network-configuration)
-- [Verify](#verify)
+- [Verification](#verification)
 - [Conclusion](#conclusion)
 - [Author](#author)
 - [License](#license)
