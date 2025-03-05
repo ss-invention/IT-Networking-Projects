@@ -6,4 +6,4 @@ Feel free to explore the projects, and don't hesitate to contribute or open issu
 
 Here are the Project Lists :
 
-- Project-1 : [SOHO Network Design Project]()
+- Project-1 : [SOHO Network Design Project](Project-1)
