@@ -147,7 +147,7 @@ Configuring Inter-VLAN routing on the Router, we must follow these things :
          - Block Size: 64
 
       |No. of Subnet |For|Network ID / Prefix |Broadcast ID |Host Range|
-      |:---| :----: | :----: | :----: |---:|
+      |---|----|----|----|---|
       |1st |VLAN 10 |192.168.1.0/26|192.168.1.63|192.168.1.1 - 192.168.1.62|
       |2nd |VLAN 20 |192.168.1.64/26|192.168.1.127|192.168.1.65 - 192.168.1.126|
       |2nd |VLAN 30 |192.168.1.128/26|192.168.1.191|192.168.1.129 - 192.168.1.190|
