@@ -22,9 +22,9 @@ This Project involves Designing and Implementing a Small Network for a Company u
 - [Usage](#usage)
 - [Network Design](#network-design)
 - [Network Configuration](#network-configuration)
+- [Conclusion](#conclusion)
 - [Author](#author)
 - [License](#license)
-- [Conclusion](#conclusion)
 - [Contributing](#contributing)
 
 ## Installation
@@ -189,7 +189,7 @@ Configuring Inter-VLAN routing on the Router, We must be follow these things :
          Router(config-subif)# encapsulation dot1q 30
          Router(config-subif)# ip address 192.168.1.129 255.255.255.192
 
-- Every End-Devices in the different VLAN's must be use the same IP-Address as a Default Gateway-IP, which is already assigned to the respective Sub-Interfaces. So that Each VLAN's can communicate with each other by using Inter-VLAN Routing concept.
+-  Each End-Devices in the different VLAN's must be use the same IP-Address as a Gateway-IP, which is already assigned to the respective Sub-Interfaces. So that Every VLAN's can communicate with each other by using Inter-VLAN Routing concept.
 
     - For VLAN 10
 
@@ -202,3 +202,67 @@ Configuring Inter-VLAN routing on the Router, We must be follow these things :
     - For VLAN 30
 
        Every End-Devices in the VLAN 30 must be use **192.168.1.129** as a Default Gateway-IP.
+
+### Step - 4 : Set up DHCP for Automatic IP assignment for every End-Devices of the Departments.
+
+  - For Admin/IT Department
+
+        Router(config)# ip dhcp pool Admin-Pool
+        Router(config-dhcp)# network 192.168.1.0 255.255.255.192
+        Router(config-dhcp)# default-router 192.168.1.1
+        Router(config-dhcp)# dns-server 192.168.1.1
+        Router(config-dhcp)# domain-name Admin.com
+
+  - For Finance/HR Department
+
+        Router(config)# ip dhcp pool Finance-Pool
+        Router(config-dhcp)# network 192.168.1.64 255.255.255.192
+        Router(config-dhcp)# default-router 192.168.1.65
+        Router(config-dhcp)# dns-server 192.168.1.65
+        Router(config-dhcp)# domain-name Finance.com
+
+  - For Reception/CS Department
+
+        Router(config)# ip dhcp pool Reception-Pool
+        Router(config-dhcp)# network 192.168.1.128 255.255.255.192
+        Router(config-dhcp)# default-router 192.168.1.129
+        Router(config-dhcp)# dns-server 192.168.1.129
+        Router(config-dhcp)# domain-name Reception.com
+
+### Step - 5 : Configure wireless SSIDs with WPA2-PSK for each Departments.
+Configure Wireless so that each Host/End-Devices can connect their Devices through Wireless Media. Where each Host can put the SSIDs(Wifi-Name) with WPA2-PSK(Wifi-Password) in their Devices to get Internet Connection through Wireless.  
+
+  - For Admin/IT Department
+
+    SSID : Admin-WiFi (Mapped to VLAN 10)
+
+    WPA2-PSK : Admin@123
+
+  - For Finance/HR Department
+
+    SSID : Finance-WiFi (Mapped to VLAN 20)
+
+    WPA2-PSK : Finance@123
+
+  - For Reception/CS Department
+
+    SSID : Reception-WiFi (Mapped to VLAN 30)
+
+    WPA2-PSK : Reception@123
+
+## Conclusion
+
+This project successfully sets up a small business network with VLANs, wireless connectivity, DHCP, and inter-VLAN communication. The network is scalable and can be expanded with additional features as needed.
+
+## Author
+
+[Suajit Sen](https://github.com/ss-invention)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## Contributing
+
+Feel free to contribute to this project by creating pull requests or reporting issues.
+
