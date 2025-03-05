@@ -45,7 +45,7 @@ This network is designed for:
 
 ## Network Design / Topology Design
 
-### Step - 1 : Reruirements
+### Step - 1 : Requirements
 
 -	Cisco Router (1 unit)
 -   Cisco Switch (1 unit)
@@ -60,30 +60,30 @@ This network is designed for:
     - VLAN 10 (for Admin/IT)
     - VLAN 20 (for Finance/HR)
     - VLAN 30 (for Reception/CS)
--	Connect the End-devices with the Switch, which are located in the different VLAN's.
+-	Connect the End-devices to the Switch, which are located in the different VLANs.
 
 <img src="SOHO Network Design.PNG" alt="SOHO Network Topology Design">
 
 ## Network Configuration 
 
-Before Configuring anything - First, We need to Enable the Cisco Switch or Router and Open the Configure Mode. 
+Before configuring anything,  we need to enable the Cisco Switch or Router and open the Configure Mode. 
 
-We can Enable the Cisco Switch or Router by applying these steps :
+We can enable the Cisco Switch or Router by applying these steps :
 
 1. Click on the Switch/Router.
 2. Choose the CLI - Command Line Interface option.
-3. CLI Will Show - Would you like to enter the initial configuration dialog? [yes/no] : Type "No", then **Enter**.
+3. CLI Will Show - Would you like to enter the initial configuration dialog? [yes/no]: Type "No", then **Enter**.
 
        Switch>               (User EXEC Mode)
 
-4. To Enable the Switch/Router, We use enable command. 
+4. To Enable the Switch/Router, we use the "enable" command. 
 
        Switch> enable
        Switch#               (Privileged EXEC Mode)
 
-5. To Open the Configure Mode, We use config terminal command.
+5. To Open the Configure Mode, we use the "configure terminal" command.
 
-       Switch# config terminal
+       Switch# configure terminal
        Switch(config)#       (Global Configuration Mode)
 
 ### Step - 1 : Create VLANs on the Switch  
@@ -128,11 +128,11 @@ We can Enable the Cisco Switch or Router by applying these steps :
 
 ### Step - 3 : Configure router for Inter-VLAN routing
 
-Configuring Inter-VLAN routing on the Router, We must be follow these things :
+Configuring Inter-VLAN routing on the Router, we must follow these things :
 
-- Each VLAN must be lie in different Subnets of a Network.
+- Each VLAN must lie in a different subnet of a Network.
 
-   - #### Subnetting for different VLAN's
+   - #### Subnetting for different VLANs
 
      Base Network Provided by ISP : **192.168.1.0/24** (Network Address).
 
@@ -152,20 +152,20 @@ Configuring Inter-VLAN routing on the Router, We must be follow these things :
       |2nd |VLAN 30 |192.168.1.128/26|192.168.1.191|192.168.1.129 - 192.168.1.190|
 
 
-- One Port of the Switch should be made a Trunk Port - which port is connected to the Router. Except those port that are connected to the different VLAN's.
+- One Port of the Switch should be made a Trunk Port, that port is connected to the Router. Except those port that are connected to the different VLANs.
 
       Switch(config)# interface gigabitEthernet0/1
       Switch(config-if)# switchport mode trunk
 
-- We have to create the Sub-Interfaces for each VLAN's and Assign the different IP-Addresses for each Sub-Interfaces.
+- We have to create the Sub-Interfaces for each VLAN and Assign the different IP addresses for each Sub-Interface.
 
-   - Before, Create Sub-Interface, We need to Enable the Router and Open Confige Mode. 
+   - Before, Create Sub-Interface, we need to enable the Router and Open Config Mode. 
     
          Router> enable
          Router# configure terminal
          Router(config)#
 
-   - After, That Interface of the Router should be up which is connected to the Switch by using "no shutdown" command.  
+   - After that, the Router Interface should be UP. That interface is connected to the Switch using the "no shutdown" command.  
 
          Router(config)# interface gigabitEthernet0/0
          Router(config-if)# no shutdown
@@ -189,21 +189,21 @@ Configuring Inter-VLAN routing on the Router, We must be follow these things :
          Router(config-subif)# encapsulation dot1q 30
          Router(config-subif)# ip address 192.168.1.129 255.255.255.192
 
--  Each End-Devices in the different VLAN's must be use the same IP-Address as a Gateway-IP, which is already assigned to the respective Sub-Interfaces. So that Every VLAN's can communicate with each other by using Inter-VLAN Routing concept.
+-  Each End Device in the different VLANs must use the same IP address as a Gateway-IP, which is already assigned to the respective Sub-Interfaces. So that every VLAN can communicate with each other by applying Inter-VLAN Routing Protocol.
 
     - For VLAN 10
 
-       Every End-Devices in the VLAN 10 must be use **192.168.1.1** as a Default Gateway-IP.
+       Every End-Device in the VLAN 10 must use **192.168.1.1** as a Default Gateway-IP.
 
     - For VLAN 20
 
-       Every End-Devices in the VLAN 20 must be use **192.168.1.65** as a Default Gateway-IP.
+       Every End-Device in the VLAN 20 must use **192.168.1.65** as a Default Gateway-IP.
 
     - For VLAN 30
 
-       Every End-Devices in the VLAN 30 must be use **192.168.1.129** as a Default Gateway-IP.
+       Every End-Device in the VLAN 30 must use **192.168.1.129** as a Default Gateway-IP.
 
-### Step - 4 : Set up DHCP for Automatic IP assignment for every End-Devices of the Departments.
+### Step - 4 : Set up DHCP for Automatic IP assignment for every End-Device of the Departments.
 
   - For Admin/IT Department
 
@@ -229,8 +229,8 @@ Configuring Inter-VLAN routing on the Router, We must be follow these things :
         Router(config-dhcp)# dns-server 192.168.1.129
         Router(config-dhcp)# domain-name Reception.com
 
-### Step - 5 : Configure wireless SSIDs with WPA2-PSK for each Departments.
-Configure Wireless so that each Host/End-Devices can connect their Devices through Wireless Media. Where each Host can put the SSIDs(Wifi-Name) with WPA2-PSK(Wifi-Password) in their Devices to get Internet Connection through Wireless.  
+### Step - 5 : Configure wireless SSIDs with WPA2-PSK for each Department.
+Configure Wireless so that each Host/End-Device can connect their Devices through Wireless Media. Where each Host can put the SSIDs(Wifi-Name) with WPA2-PSK(Wifi-Password) in their Devices to get an Internet Connection through Wireless.  
 
   - For Admin/IT Department
 
