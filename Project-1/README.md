@@ -67,7 +67,7 @@ This network is designed for:
 
 ## Network Configuration 
 
-Before configuring anything,  we need to enable the Cisco Switch or Router and open the Configure Mode. 
+Before configuring anything,  we must enable the Cisco Switch or Router and open the Configure Mode. 
 
 We can enable the Cisco Switch or Router by applying these steps :
 
@@ -82,7 +82,7 @@ We can enable the Cisco Switch or Router by applying these steps :
        Switch> enable
        Switch#               (Privileged EXEC Mode)
 
-5. To Open the Configure Mode, we use the "configure terminal" command.
+5. We use the "configure terminal" command to open the Configure Mode.
 
        Switch# configure terminal
        Switch(config)#       (Global Configuration Mode)
@@ -103,6 +103,21 @@ We can enable the Cisco Switch or Router by applying these steps :
 
       Switch(config)# vlan 30
       Switch(config-vlan)# name Reception/CS
+
+  To show VLANs using the "show vlan brief" command.
+
+      Switch# sh vlan brief
+
+     |VLAN | Name|                             Status|Ports |
+     |---|----|----|---|
+     |1   | default|                          active |Fa0/1, Fa0/2, Fa0/3, Fa0/4, Fa0/5, Fa0/6, Fa0/7, Fa0/8, Fa0/9, Fa0/10, Fa0/11, Fa0/12, Fa0/13, Fa0/14, Fa0/15, Fa0/16, Fa0/17, Fa0/18, Fa0/19, Fa0/20, Fa0/21, Fa0/22, Fa0/23, Fa0/24, Gig0/2|
+     |10|   ADMIN/IT|                         active|    
+     |20|   FINANCE/HR|                       active|    
+     |30|   RECEPTION/CS|                     active|    
+     |1002| fddi-default|                     active|    
+     |1003| token-ring-default|               active|    
+     |1004| fddinet-default|                  active|   
+     |1005| trnet-default|                    active|    
 
 ### Step - 2 : Assign ports to VLANs
 
@@ -126,6 +141,21 @@ We can enable the Cisco Switch or Router by applying these steps :
       Switch(config-vlan)# interface range f0/7-9
       Switch(config-if-range)# switchport mode access
       Switch(config-if-range)# switchport access vlan 30
+
+  After assigning ports to the VLANs, again show VLANs using the "show vlan brief" command to check ports assigned to the VLANs or not.
+
+      Switch# sh vlan brief
+
+     |VLAN | Name|                             Status|Ports |
+     |---|----|----|---|
+     |1   | default|                          active |Fa0/10, Fa0/11, Fa0/12, Fa0/13, Fa0/14, Fa0/15, Fa0/16, Fa0/17, Fa0/18, Fa0/19, Fa0/20, Fa0/21, Fa0/22, Fa0/23, Fa0/24, Gig0/2|
+     |10|   ADMIN/IT|                         active|    Fa0/1, Fa0/2, Fa0/3|
+     |20|   FINANCE/HR|                       active|    Fa0/4, Fa0/5, Fa0/6|
+     |30|   RECEPTION/CS|                     active|    Fa0/7, Fa0/8, Fa0/9|
+     |1002| fddi-default|                     active|    
+     |1003| token-ring-default|               active|    
+     |1004| fddinet-default|                  active|   
+     |1005| trnet-default|                    active|
 
 ### Step - 3 : Configure router for Inter-VLAN routing
 
@@ -158,6 +188,26 @@ Configuring Inter-VLAN routing on the Router, we must follow these things :
       Switch(config)# interface gigabitEthernet0/1
       Switch(config-if)# switchport mode trunk
 
+  To show Trunk using the "show interface trunk" command.
+
+      Switch# show interface trunk
+
+     |Port|        Mode|         Encapsulation|  Status|        Native vlan|
+     |---|----|----|----|:---:|
+     |Gig0/1|      on|           802.1q|         trunking|      1|
+     
+     |Port|Vlans allowed on trunk|
+     |---|---|
+     |Gig0/1|      1-1005|
+
+     |Port|       Vlans allowed and active in management domain|
+     |---|---|
+     |Gig0/1|      1,10,20,30|
+
+     |Port|        Vlans in spanning tree forwarding state and not pruned|
+     |---|---|
+     |Gig0/1|      1,10,20,30|
+
 - We have to create the Sub-Interfaces for each VLAN and Assign the different IP addresses for each Sub-Interface.
 
    - Before, Create Sub-Interface, we need to enable the Router and Open Config Mode. 
@@ -166,7 +216,7 @@ Configuring Inter-VLAN routing on the Router, we must follow these things :
          Router# configure terminal
          Router(config)#
 
-   - After that, the Router Interface should be UP. That interface is connected to the Switch using the "no shutdown" command.  
+   - After that, we need to UP that interface of the Router, which interface is connected to the Switch by using the "no shutdown" command.  
 
          Router(config)# interface gigabitEthernet0/0
          Router(config-if)# no shutdown
@@ -190,6 +240,20 @@ Configuring Inter-VLAN routing on the Router, we must follow these things :
          Router(config-subif)# encapsulation dot1q 30
          Router(config-subif)# ip address 192.168.1.129 255.255.255.192
 
+     To show Sub-Interfaces using "show ip interface brief" command.
+
+      Router# sh ip int brief
+
+     |Interface|              IP-Address|      OK? Method Status|                Protocol|
+     |---|----|----|---| 
+     |GigabitEthernet0/0|     unassigned|      YES unset  up|                    up| 
+     |GigabitEthernet0/0.10|  192.168.1.1|     YES manual up|                    up| 
+     |GigabitEthernet0/0.20|  192.168.1.65|    YES manual up|                    up| 
+     |GigabitEthernet0/0.30|  192.168.1.129|   YES manual up|                    up| 
+     |GigabitEthernet0/1|     unassigned|      YES unset  administratively down| down| 
+     |GigabitEthernet0/2|     unassigned|      YES unset  administratively down| down| 
+     |Vlan1|
+
 -  Each End Device in the different VLANs must use the same IP address as a Gateway-IP, which is already assigned to the respective Sub-Interfaces. So that every VLAN can communicate with each other by applying Inter-VLAN Routing Protocol.
 
     - For VLAN 10
@@ -203,6 +267,33 @@ Configuring Inter-VLAN routing on the Router, we must follow these things :
     - For VLAN 30
 
        Every End-Device in the VLAN 30 must use **192.168.1.129** as a Default Gateway-IP.
+
+Now Inter-VLAN Routing process is completed.
+
+To show Inter-VLAN Routing using "show ip route" command.
+
+    Router# sh ip route
+
+
+Codes: 
+
+      L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+      D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+      N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+      E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+      i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+      * - candidate default, U - per-user static route, o - ODR
+      P - periodic downloaded static route
+
+      Gateway of last resort is not set
+
+      192.168.1.0/24 is variably subnetted, 6 subnets, 2 masks
+      C       192.168.1.0/26 is directly connected, GigabitEthernet0/0.10
+      L       192.168.1.1/32 is directly connected, GigabitEthernet0/0.10
+      C       192.168.1.64/26 is directly connected, GigabitEthernet0/0.20
+      L       192.168.1.65/32 is directly connected, GigabitEthernet0/0.20
+      C       192.168.1.128/26 is directly connected, GigabitEthernet0/0.30
+      L       192.168.1.129/32 is directly connected, GigabitEthernet0/0.30
 
 ### Step - 4 : Set up DHCP for Automatic IP assignment for every End-Device of the Departments.
 
@@ -250,6 +341,107 @@ Configure Wireless so that each Host/End-Device can connect their Devices throug
     SSID : Reception-WiFi (Mapped to VLAN 30)
 
     WPA2-PSK : Reception@123
+
+## Verification
+ 
+### Verify Communication across VLANs using ping
+
+- Ping **Laptop0** of VLAN 10 to **PC1** of VLAN 20
+
+      Cisco Packet Tracer PC Command Line 1.0
+      C:\>ping 192.168.1.67
+      
+      Pinging 192.168.1.67 with 32 bytes of data:
+      
+      Reply from 192.168.1.67: bytes=32 time=32ms TTL=127
+      Reply from 192.168.1.67: bytes=32 time=31ms TTL=127
+      Reply from 192.168.1.67: bytes=32 time=36ms TTL=127
+      
+      Ping statistics for 192.168.1.67:
+          Packets: Sent = 4, Received = 3, Lost = 1 (25% loss),
+      Approximate round trip times in milli-seconds:
+          Minimum = 26ms, Maximum = 48ms, Average = 37ms
+
+- Ping **Laptop0** of VLAN 10 to **Laptop2** of VLAN 30
+
+      Cisco Packet Tracer PC Command Line 1.0
+      C:\>ping 192.168.1.132
+      
+      Pinging 192.168.1.132 with 32 bytes of data:
+      
+      Reply from 192.168.1.132: bytes=32 time=38ms TTL=127
+      Reply from 192.168.1.132: bytes=32 time=66ms TTL=127
+      Reply from 192.168.1.132: bytes=32 time=62ms TTL=127
+      
+      Ping statistics for 192.168.1.132:
+          Packets: Sent = 4, Received = 3, Lost = 1 (25% loss),
+      Approximate round trip times in milli-seconds:
+          Minimum = 38ms, Maximum = 66ms, Average = 55ms
+
+- Ping **Laptop1** of VLAN 20 to **PC0** of VLAN 10
+
+      Cisco Packet Tracer PC Command Line 1.0
+      C:\>ping 192.168.1.3
+      
+      Pinging 192.168.1.3 with 32 bytes of data:
+      
+      Reply from 192.168.1.3: bytes=32 time=46ms TTL=127
+      Reply from 192.168.1.3: bytes=32 time=32ms TTL=127
+      Reply from 192.168.1.3: bytes=32 time=32ms TTL=127
+      
+      Ping statistics for 192.168.1.3:
+          Packets: Sent = 4, Received = 3, Lost = 1 (25% loss),
+      Approximate round trip times in milli-seconds:
+          Minimum = 32ms, Maximum = 46ms, Average = 36ms
+
+- Ping **Laptop1** of VLAN 20 to **PC2** of VLAN 30
+
+      Cisco Packet Tracer PC Command Line 1.0
+      C:\>ping 192.168.1.130
+      
+      Pinging 192.168.1.130 with 32 bytes of data:
+      
+      Reply from 192.168.1.130: bytes=32 time=73ms TTL=127
+      Reply from 192.168.1.130: bytes=32 time=32ms TTL=127
+      Reply from 192.168.1.130: bytes=32 time=33ms TTL=127
+      
+      Ping statistics for 192.168.1.130:
+          Packets: Sent = 4, Received = 3, Lost = 1 (25% loss),
+      Approximate round trip times in milli-seconds:
+          Minimum = 32ms, Maximum = 73ms, Average = 46ms
+
+- Ping **Laptop2** of VLAN 30 to **Smartphone0** of VLAN 10
+
+      Cisco Packet Tracer PC Command Line 1.0
+      C:\>ping 192.168.1.4
+      
+      Pinging 192.168.1.4 with 32 bytes of data:
+      
+      Reply from 192.168.1.4: bytes=32 time=61ms TTL=127
+      Reply from 192.168.1.4: bytes=32 time=46ms TTL=127
+      Reply from 192.168.1.4: bytes=32 time=73ms TTL=127
+      
+      Ping statistics for 192.168.1.4:
+          Packets: Sent = 4, Received = 3, Lost = 1 (25% loss),
+      Approximate round trip times in milli-seconds:
+          Minimum = 46ms, Maximum = 73ms, Average = 60ms
+
+- Ping **Laptop2** of VLAN 30 to **Printer1** of VLAN 20
+
+      Cisco Packet Tracer PC Command Line 1.0
+      C:\>ping 192.168.1.66
+      
+      Pinging 192.168.1.66 with 32 bytes of data:
+      
+      Reply from 192.168.1.66: bytes=32 time=25ms TTL=127
+      Reply from 192.168.1.66: bytes=32 time=8ms TTL=127
+      Reply from 192.168.1.66: bytes=32 time=16ms TTL=127
+      Reply from 192.168.1.66: bytes=32 time=40ms TTL=127
+      
+      Ping statistics for 192.168.1.66:
+          Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+      Approximate round trip times in milli-seconds:
+          Minimum = 8ms, Maximum = 40ms, Average = 22ms
 
 ## Conclusion
 
