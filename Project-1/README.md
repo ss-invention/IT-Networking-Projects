@@ -443,6 +443,8 @@ Configure Wireless so that each Host/End-Device can connect their Devices throug
       Approximate round trip times in milli-seconds:
           Minimum = 8ms, Maximum = 40ms, Average = 22ms
 
+Here, Verification is done and fulfills our requirements.  
+
 ## Conclusion
 
 This project successfully sets up a small business network with VLANs, wireless connectivity, DHCP, and inter-VLAN communication. The network is scalable and can be expanded with additional features as needed.
