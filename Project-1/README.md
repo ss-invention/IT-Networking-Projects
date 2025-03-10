@@ -242,7 +242,7 @@ Configuring Inter-VLAN routing on the Router, we must follow these things :
 
      To show Sub-Interfaces using "show ip interface brief" command.
 
-      Router# sh ip int brief
+         Router# sh ip int brief
 
      |Interface|              IP-Address|      OK? Method Status|                Protocol|
      |---|----|----|---| 
